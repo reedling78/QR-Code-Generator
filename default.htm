@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title></title>
+	<script src="vendor/jquery-1.8.0.min.js"></script>
+	<style>
+		body{
+			font-size: 30px;
+
+		}
+		select {
+    -webkit-appearance: none;
+}
+
+		input, select, button{
+			width: 300px;
+			font-size: 25px;
+		}
+	</style>
+</head>
+<body>
+
+	<img id="img"/>
+	<a id="download" style="display:none;" target="">download</a>
+
+<fieldset>
+<legend>QR Options</legend>
+<table>
+	<tr>
+		<td><label>URL: </label></td>
+		<td><input type="text" id="url"/></td>
+	</tr>
+	<tr>
+		<td><label>Size: </label></td>
+		<td>
+			<select id="size">
+				<option>50x50</option>
+				<option>150x150</option>
+				<option selected="selected">250x250</option>
+				<option>350x350</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><button>change it</button></td>
+	</tr>
+</table>
+
+
+</fieldset>
+<script>
+	$(document).ready(function(){
+		$('button').on('click', function(){
+			var url = encodeURIComponent($('#url').val());
+			var size = $("#size option:selected").text();
+
+			var qrpath = 'https://chart.googleapis.com/chart?chs=' + size + '&cht=qr&chl=' + url;
+
+
+			$('#img').attr('src', qrpath);
+			$('#download').attr('href', qrpath);
+		})
+	});
+</script>
+<div style="position:absolute;filter:alpha(opacity=0);opacity:0.001;z-index:10;">                                                                            </div></body>
+</html>
